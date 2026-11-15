@@ -31,3 +31,9 @@ SELECT * FROM jobs;
 
 
 show TABLES;
+
+DESCRIBE companies;
+
+select * from companies;
+
+select * from jobs;

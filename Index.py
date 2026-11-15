@@ -1,5 +1,7 @@
 import mysql.connector
-import connection_to_db
+import datetime
+from database import connection_to_db
+import Jobbtech_api
 
 
 def test_connection():
@@ -35,3 +37,4 @@ def test_connection():
 
 # Testa anslutningen
 test_connection()
+
