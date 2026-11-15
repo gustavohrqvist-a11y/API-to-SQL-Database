@@ -18,6 +18,12 @@ CREATE TABLE jobs (
     FOREIGN KEY (company_id) REFERENCES companies(company_id)
 );
 
+ALTER TABLE jobs
+  ADD COLUMN status VARCHAR(20) DEFAULT 'Ej sökt',
+  ADD COLUMN notes TEXT,
+  ADD COLUMN applied_date DATE;
+
+
 CREATE TABLE applications (
     application_id INT PRIMARY KEY AUTO_INCREMENT,
     job_id INT NOT NULL UNIQUE,
@@ -27,13 +33,20 @@ CREATE TABLE applications (
     FOREIGN KEY (job_id) REFERENCES jobs(job_id)
 );
 
+
+
 SELECT * FROM jobs;
 
 
 show TABLES;
 
 DESCRIBE companies;
+describe jobs;
 
 select * from companies;
 
 select * from jobs;
+
+DELETE FROM companies;
+
+delete from jobs;

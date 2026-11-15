@@ -14,13 +14,6 @@ class Job:
         self.url = url
 
 
-job = Job(
-    api_job_id="12345",
-    title="Software Engineer",
-    company="Spotify",
-    location="Stockholm, Sweden",
-    url="https://example.com/job/12345"
-)
 
 import requests
 
@@ -53,14 +46,21 @@ def fetch_jobs_from_api(search_query):
 
 
 def convert_api_job_to_object(api_job):
-    # Omvandla API-data till ett Job-objekt
-    return Job(
+
+    job = Job(
         api_job_id=api_job["id"],
         title=api_job["headline"],
         company=api_job["employer"]["name"],
         location=api_job["workplace_address"]["city"],
         url=api_job["webpage_url"]
     )
+
+    return job
+
+
+
+
+
 
 
 
@@ -168,23 +168,69 @@ def save_job_to_db(job):
 
 
 
+### 
+#jobs_data = fetch_jobs_from_api()
 
-jobs_data = fetch_jobs_from_api("python")
+#if jobs_data:
 
-if jobs_data:
+   # first_job = jobs_data["hits"][0]
 
-    first_job = jobs_data["hits"][0]
-
-    print("Jobb-ID:", first_job["id"])
-    print("Titel:", first_job["headline"])
-    print("Företag:", first_job["employer"]["name"])
-    print("Plats:", first_job["workplace_address"]["city"])
-    print("Länk:", first_job["webpage_url"])
-
-
+   # print("Jobb-ID:", first_job["id"])
+   # print("Titel:", first_job["headline"])
+   # print("Företag:", first_job["employer"]["name"])
+   # print("Plats:", first_job["workplace_address"]["city"])
+   # print("Länk:", first_job["webpage_url"])
 
 
-save_job_to_db(job)
+
+
+def main():
+
+    print("1. Startar programmet")
+
+    jobs_data = fetch_jobs_from_api("python")
+
+    if not jobs_data:
+        print("Kunde inte hämta jobb.")
+        return
+
+    hits = jobs_data.get("hits", [])
+
+    if not hits:
+        print("Inga jobb hittades.")
+        return
+
+    print(f"2. {len(hits)} jobb hämtade från API")
+
+    saved_count = 0
+
+    for api_job in hits:
+
+        try:
+            job = convert_api_job_to_object(api_job)
+
+            print("\nSparar jobb:", job.title)
+            print("Företag:", job.company)
+
+            save_job_to_db(job)
+
+            saved_count += 1
+
+        except (KeyError, TypeError) as error:
+            print("Kunde inte läsa jobbdata:", error)
+            continue
+
+    print("\n-----------------------------")
+    print("3. Alla jobb har behandlats!")
+    print(f"Antal jobb hämtade: {len(hits)}")
+    print(f"Antal jobb behandlade: {saved_count}")
+    print("-----------------------------")
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 
 

@@ -1,0 +1,76 @@
+from database import connection_to_db
+import requests
+import mysql.connector
+
+
+def fetch_jobs_from_api(search_query):
+
+    api_url = "https://jobsearch.api.jobtechdev.se/search"
+
+    params = {
+        "q": search_query,
+        "limit": 20
+    }
+
+    try:
+        response = requests.get(api_url, params=params, timeout=15)
+
+        # Kontrollera om svaret är OK
+        response.raise_for_status()
+
+        # Omvandla JSON till Python-data
+        data = response.json()
+
+        return data
+
+    except requests.exceptions.RequestException as error:
+        print("Kunde inte hämta jobb från API:", error)
+        return None
+
+
+def test_connection():
+    db_connection = None
+
+    try:
+        db_connection = connection_to_db.connect_db()
+
+        if db_connection and db_connection.is_connected():
+            print("Databasanslutningen fungerar!")
+
+            cursor = db_connection.cursor()
+            cursor.execute("SELECT 1")
+
+            result = cursor.fetchone()
+            print("SQL-test lyckades:", result)
+
+            cursor.close()
+            return True
+
+        else:
+            print("Kunde inte ansluta till databasen.")
+            return False
+
+    except mysql.connector.Error as error:
+        print("Fel vid databastest:", error)
+        return False
+
+    finally:
+        if db_connection and db_connection.is_connected():
+            db_connection.close()
+
+def test_api_connection():
+    search_query = "Python"
+    jobs_data = fetch_jobs_from_api(search_query)
+
+    if jobs_data is not None:
+        print("API-anslutningen fungerar! Antal jobb hämtade:", len(jobs_data.get("hits", [])))
+        return True
+    else:
+        print("Kunde inte hämta jobb från API.")
+        return False
+
+# Testa anslutningen
+test_connection()
+
+# Testa API-anslutningen
+test_api_connection()
