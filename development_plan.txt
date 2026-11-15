@@ -1,0 +1,72 @@
+Fas 1 – Databas och anslutning
+- [ ] Kontrollera MySQL-databasen jobbit ✅
+- [ ] Kontrollera tabellerna companies, jobs och applications ✅
+- [ ] Kontrollera primärnycklar och främmande nycklar ✅
+- [ ] Testa Python-anslutningen till MySQL ✅
+- [ ] Kontrollera att data kan läsas och sparas ✅
+
+Fas 2 – Företagshantering
+- [ ] Skapa add_company() ✅
+- [ ] Skapa get_all_companies()
+- [ ] Skapa get_company_by_id()
+- [ ] Skapa update_company()
+- [ ] Skapa delete_company()
+- [ ] Testa samtliga funktioner
+
+Fas 3 – Jobbhantering
+- [ ] Skapa add_job()
+- [ ] Skapa get_all_jobs()
+- [ ] Skapa get_job_by_id()
+- [ ] Skapa search_jobs()
+- [ ] Skapa filter_jobs()
+- [ ] Skapa delete_job()
+- [ ] Testa samtliga funktioner
+
+Fas 4 – Ansökningshantering
+- [ ] Skapa add_application()
+- [ ] Skapa get_all_applications()
+- [ ] Skapa update_application_status()
+- [ ] Skapa get_application_by_job()
+- [ ] Skapa delete_application()
+- [ ] Testa samtliga funktioner
+
+Fas 5 – JobTech API
+- [ ] Kontrollera befintlig API-integration
+- [ ] Skapa fetch_jobs_from_api()
+- [ ] Skapa process_api_data()
+- [ ] Skapa check_duplicate_jobs()
+- [ ] Skapa save_api_jobs()
+- [ ] Testa att annonser sparas korrekt i SQL
+
+Fas 6 – Statistik
+- [ ] Skapa get_total_applications()
+- [ ] Skapa get_applications_by_status()
+- [ ] Skapa get_most_common_locations()
+- [ ] Skapa get_application_statistics()
+- [ ] Kontrollera resultat med SQL-frågor
+
+Fas 7 – Felhantering och testning
+- [ ] Validera användardata
+- [ ] Lägg till try/except där det behövs
+- [ ] Använd parameteriserade SQL-frågor
+- [ ] Kontrollera att databasanslutningar stängs
+- [ ] Testa felaktig inmatning
+- [ ] Testa hela backend-flödet
+
+Fas 8 – Användargränssnitt (UI)
+- [ ] Välja Streamlit
+- [ ] Skapa startsida och dashboard
+- [ ] Visa jobbannonser
+- [ ] Skapa formulär för ansökningar
+- [ ] Visa och uppdatera ansökningsstatus
+- [ ] Visa statistik
+- [ ] Testa UI och backend tillsammans
+
+Fas 9 – Färdigställa GitHub
+- [ ] Skriv en tydlig README.md
+- [ ] Skapa ER-diagram
+- [ ] Lägg till installationsinstruktioner
+- [ ] Skapa .env.example
+- [ ] Kontrollera .gitignore och att .env inte laddas upp
+- [ ] Lägg till skärmbilder
+- [ ] Sluttesta projektet

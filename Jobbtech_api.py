@@ -14,13 +14,7 @@ class Job:
         self.url = url
 
 
-job = Job(
-    api_job_id="12345",
-    title="Software Engineer",
-    company="Spotify",
-    location="Stockholm, Sweden",
-    url="https://example.com/job/12345"
-)
+
 
 import requests
 
@@ -184,7 +178,7 @@ if jobs_data:
 
 
 
-save_job_to_db(job)
+save_job_to_db()
 
 
 

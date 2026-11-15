@@ -29,11 +29,18 @@ CREATE TABLE applications (
 
 SELECT * FROM jobs;
 
+drop table companies;
 
-show TABLES;
+
 
 DESCRIBE companies;
 
 select * from companies;
 
 select * from jobs;
+
+delete from jobs;
+
+delete from companies;
+
+explain companies;
